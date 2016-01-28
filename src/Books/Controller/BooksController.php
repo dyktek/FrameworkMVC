@@ -2,22 +2,20 @@
 
 namespace Books\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
+use Simplex\App;
 use Books\Model\Books;
 
-class BooksController
+class BooksController extends App
 {
     public function indexAction($page, $test)
     {
+        $em = $this->getEntityManager();
 
-        $model = new Books();
+        $books = $em->getRepository('Books\Model\Books')->findAll();
 
-        $data = $model->getList();
-
-        echo '<pre>';
-        print_r($data);
-
-        return new Response($page . ', '. $test);
+        return $this->render('Books/View/list.html.twig', array(
+            'books' => $books
+        ));
     }
 
 }

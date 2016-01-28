@@ -5,6 +5,8 @@
     "require": {
         "symfony/http-foundation": "^3.0",
         "symfony/routing": "^3.0",
-        "symfony/http-kernel": "^3.0"
+        "symfony/http-kernel": "^3.0",
+        "twig/twig": "~1.0",
+        "doctrine/orm": "^2.5"
     }
 }
