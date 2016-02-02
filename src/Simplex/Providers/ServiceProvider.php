@@ -11,5 +11,5 @@ abstract class ServiceProvider
         $this->config = $config;
     }
 
-    abstract public function provide();
+    abstract public function provide(array $options = []);
 }

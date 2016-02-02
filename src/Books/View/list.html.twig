@@ -1,6 +1,25 @@
+{% extends 'Books/View/Layout/layout.html.twig' %}
+
+
+{% block content %}
+
 <h1>Rekordy</h1>
-<ul>
+<table class="table table-hover">
+    <tr>
+        <th>nazwa</th>
+        <th>opis</th>
+        <th class="text-right">akcje</th>
+    </tr>
     {% for row in books %}
-        <li>{{ row.name }}, {{ row.description }}</li>
+        <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.description }}</td>
+            <td class="text-right">
+                <a class="btn btn-primary" href="{{ url('bookEdit', {'id' : row.id}) }}" role="button">Edytuj</a>
+            </td>
+
+        </tr>
     {% endfor %}
-</ul>
+</table>
+
+{% endblock %}

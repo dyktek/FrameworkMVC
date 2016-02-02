@@ -18,4 +18,9 @@ class BooksController extends App
         ));
     }
 
+    public function editAction($id)
+    {
+        return $this->render('Books/View/edit.html.twig');
+    }
+
 }

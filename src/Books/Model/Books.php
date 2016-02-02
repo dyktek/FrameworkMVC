@@ -19,6 +19,8 @@ class Books
     /** @Column(type="string") **/
     protected $author;
 
+    protected $test = 123;
+
     public function getId()
     {
         return $this->id;

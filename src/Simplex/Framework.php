@@ -32,7 +32,7 @@ class Framework
             $arguments = $this->resolver->getArguments($request, $controller);
 
 //            echo '<pre>';
-//            print_r($arguments);
+//            print_r($controller[1]);
 //            die;
 
             return call_user_func_array($controller, $arguments);
