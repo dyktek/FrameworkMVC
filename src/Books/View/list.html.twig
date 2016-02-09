@@ -3,6 +3,13 @@
 
 {% block content %}
 
+<div id="element" style="background: red;overflow: hidden;">Start</div>
+    <br>
+    <br>
+    <br>
+<div id="element2" style="background: red;">Reset</div>
+
+
 <h1>Rekordy</h1>
 <table class="table table-hover">
     <tr>
@@ -12,7 +19,7 @@
     </tr>
     {% for row in books %}
         <tr>
-            <td>{{ row.name }}</td>
+            <td class="name">{{ row.name }}</td>
             <td>{{ row.description }}</td>
             <td class="text-right">
                 <a class="btn btn-primary" href="{{ url('bookEdit', {'id' : row.id}) }}" role="button">Edytuj</a>
