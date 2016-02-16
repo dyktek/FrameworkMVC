@@ -2,8 +2,10 @@
 
 namespace Books\Controller;
 
+use Doctrine\ORM\Internal\Hydration\ArrayHydrator;
 use Simplex\App;
 use Books\Model\Books;
+
 
 class BooksController extends App
 {
@@ -13,9 +15,22 @@ class BooksController extends App
 
         $books = $em->getRepository('Books\Model\Books')->findAll();
 
-        return $this->render('Books/View/list.html.twig', array(
-            'books' => $books
-        ));
+        if ($this->isAjax) {
+
+            $newBooks = [];
+
+            foreach ($books as $book) {
+                $newBooks[] = $book->toArray();
+            }
+
+            return $this->renderAjax($newBooks);
+
+        } else {
+
+            return $this->render('Books/View/list.html.twig', array(
+                //'books' => $books
+            ));
+        }
     }
 
     public function editAction($id)

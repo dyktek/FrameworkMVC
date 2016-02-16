@@ -181,7 +181,20 @@
 
 
 //WCZYTANIE DOKUMENTU DOM JQUERY
-$(document).ready(function(){
+//$(document).ready(function(){
+    //$('#element').click(function(){
+    //
+    //    $.get('http://mvc.pl/books',function(res){
+    //
+    //        console.log(res);
+    //
+    //        //$.each(res, function(key, value){
+    //        //    console.log(value);
+    //        //});
+    //
+    //    });
+    //
+    //});
 
     //PĘTLA JQUERY
     //$.each($('.name'), function(key, value){
@@ -251,4 +264,4 @@ $(document).ready(function(){
     //});
 
 
-});
+//});

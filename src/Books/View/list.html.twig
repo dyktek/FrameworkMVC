@@ -2,31 +2,37 @@
 
 
 {% block content %}
+    <div>
+        <input id="filter" type="text" value="" />
+    </div>
+    <div id="list">
+        Loading...
+    </div>
 
-<div id="element" style="background: red;overflow: hidden;">Start</div>
-    <br>
-    <br>
-    <br>
-<div id="element2" style="background: red;">Reset</div>
+{#<div id="element" style="background: red;overflow: hidden;">Start</div>#}
+    {#<br>#}
+    {#<br>#}
+    {#<br>#}
+{#<div id="element2" style="background: red;">Reset</div>#}
 
 
-<h1>Rekordy</h1>
-<table class="table table-hover">
-    <tr>
-        <th>nazwa</th>
-        <th>opis</th>
-        <th class="text-right">akcje</th>
-    </tr>
-    {% for row in books %}
-        <tr>
-            <td class="name">{{ row.name }}</td>
-            <td>{{ row.description }}</td>
-            <td class="text-right">
-                <a class="btn btn-primary" href="{{ url('bookEdit', {'id' : row.id}) }}" role="button">Edytuj</a>
-            </td>
+{#<h1>Rekordy</h1>#}
+{#<table class="table table-hover">#}
+    {#<tr>#}
+        {#<th>nazwa</th>#}
+        {#<th>opis</th>#}
+        {#<th class="text-right">akcje</th>#}
+    {#</tr>#}
+    {#{% for row in books %}#}
+        {#<tr>#}
+            {#<td class="name">{{ row.name }}</td>#}
+            {#<td>{{ row.description }}</td>#}
+            {#<td class="text-right">#}
+                {#<a class="btn btn-primary" href="{{ url('bookEdit', {'id' : row.id}) }}" role="button">Edytuj</a>#}
+            {#</td>#}
 
-        </tr>
-    {% endfor %}
-</table>
+        {#</tr>#}
+    {#{% endfor %}#}
+{#</table>#}
 
 {% endblock %}
