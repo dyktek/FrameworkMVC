@@ -4,3 +4,4 @@ composer.lock
 src/config.php
 cache/*
 node_modules/*
+web/node_modules/*

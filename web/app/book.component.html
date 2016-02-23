@@ -1,0 +1,22 @@
+<div class="container">
+
+    <my-test></my-test>
+
+    <input #bookFilter (keyup)="0" type="text" class="form-control" placeholder="Filter">
+
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>Tytul</th>
+            <th>Autor</th>
+            <th>Opis</th>
+        </tr>
+        <tr *ngFor="#book of books | booksFilter:bookFilter.value">
+            <td>{{book.id}}</td>
+            <td>{{book.name}}</td>
+            <td>{{book.author}}</td>
+            <td>{{book.description}}</td>
+        </tr>
+    </table>
+
+</div>
