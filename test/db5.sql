@@ -89,11 +89,18 @@ CREATE TABLE IF NOT EXISTS `blog`.`comments` (
   `cmt_body` VARCHAR(45) NULL,
   `cmt_usr_id` INT NOT NULL,
   `cmt_status` SET('0','1','2') NULL,
+  `cmt_art_id` INT NOT NULL,
   PRIMARY KEY (`cmt_id`),
   INDEX `fk_comments_users1_idx` (`cmt_usr_id` ASC),
+  INDEX `fk_comments_articles1_idx` (`cmt_art_id` ASC),
   CONSTRAINT `fk_comments_users1`
     FOREIGN KEY (`cmt_usr_id`)
     REFERENCES `blog`.`users` (`usr_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comments_articles1`
+    FOREIGN KEY (`cmt_art_id`)
+    REFERENCES `blog`.`articles` (`art_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

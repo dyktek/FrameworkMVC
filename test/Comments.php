@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Comments
  *
- * @ORM\Table(name="comments", indexes={@ORM\Index(name="fk_comments_users1_idx", columns={"cmt_usr_id"})})
+ * @ORM\Table(name="comments", indexes={@ORM\Index(name="fk_comments_users1_idx", columns={"cmt_usr_id"}), @ORM\Index(name="fk_comments_articles1_idx", columns={"cmt_art_id"})})
  * @ORM\Entity
  */
 class Comments
@@ -44,6 +44,16 @@ class Comments
      * })
      */
     private $cmtUsr;
+
+    /**
+     * @var \Articles
+     *
+     * @ORM\ManyToOne(targetEntity="Articles")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="cmt_art_id", referencedColumnName="art_id")
+     * })
+     */
+    private $cmtArt;
 
 
 }
