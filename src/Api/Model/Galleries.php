@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Api\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 

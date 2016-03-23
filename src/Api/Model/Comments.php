@@ -1,13 +1,13 @@
 <?php
 
-
+namespace Api\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Comments
  *
- * @ORM\Table(name="comments", indexes={@ORM\Index(name="fk_comments_users1_idx", columns={"cmt_usr_id"}), @ORM\Index(name="fk_comments_articles1_idx", columns={"cmt_art_id"})})
+ * @ORM\Table(name="comments", indexes={@ORM\Index(name="fk_comments_users1_idx", columns={"cmt_usr_id"})})
  * @ORM\Entity
  */
 class Comments
@@ -29,31 +29,21 @@ class Comments
     private $cmtBody;
 
     /**
-     * @var array
+     * @var boolean
      *
-     * @ORM\Column(name="cmt_status", type="simple_array", nullable=true)
+     * @ORM\Column(name="cmt_status", type="boolean", nullable=true)
      */
     private $cmtStatus;
 
     /**
-     * @var \Users
+     * @var \Api\Model\Users
      *
-     * @ORM\ManyToOne(targetEntity="Users")
+     * @ORM\ManyToOne(targetEntity="Api\Model\Users")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="cmt_usr_id", referencedColumnName="usr_id")
      * })
      */
     private $cmtUsr;
-
-    /**
-     * @var \Articles
-     *
-     * @ORM\ManyToOne(targetEntity="Articles")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="cmt_art_id", referencedColumnName="art_id")
-     * })
-     */
-    private $cmtArt;
 
 
 }

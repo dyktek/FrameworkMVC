@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS `blog`.`categories` (
   `cat_id` INT NOT NULL AUTO_INCREMENT,
   `cat_name` VARCHAR(255) NULL,
   `cat_slug` VARCHAR(255) NULL,
-  `cat_status` SET('0','1') NULL,
+  `cat_status` TINYINT NULL,
   PRIMARY KEY (`cat_id`),
   UNIQUE INDEX `cat_slug_UNIQUE` (`cat_slug` ASC))
 ENGINE = InnoDB
@@ -28,8 +28,8 @@ CREATE TABLE IF NOT EXISTS `blog`.`users` (
   `usr_name` VARCHAR(255) NULL,
   `usr_password` VARCHAR(255) NULL,
   `usr_email` VARCHAR(255) NULL,
-  `usr_status` SET('0','1','2') NULL,
-  `usr_role` SET('0','1','2') NULL,
+  `usr_status` TINYINT NULL,
+  `usr_role` TINYINT NULL,
   `usr_date` DATETIME NULL,
   PRIMARY KEY (`usr_id`))
 ENGINE = InnoDB;
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `blog`.`articles` (
   `art_id` INT NOT NULL AUTO_INCREMENT,
   `art_title` VARCHAR(255) NULL,
   `art_slug` VARCHAR(255) NULL,
-  `art_status` SET('0','1') NULL,
+  `art_status` TINYINT NULL,
   `art_body` TEXT NULL,
   `art_date` DATETIME NULL,
   `art_cat_id` INT NOT NULL,
@@ -88,19 +88,12 @@ CREATE TABLE IF NOT EXISTS `blog`.`comments` (
   `cmt_id` INT NOT NULL AUTO_INCREMENT,
   `cmt_body` VARCHAR(45) NULL,
   `cmt_usr_id` INT NOT NULL,
-  `cmt_status` SET('0','1','2') NULL,
-  `cmt_art_id` INT NOT NULL,
+  `cmt_status` TINYINT NULL,
   PRIMARY KEY (`cmt_id`),
   INDEX `fk_comments_users1_idx` (`cmt_usr_id` ASC),
-  INDEX `fk_comments_articles1_idx` (`cmt_art_id` ASC),
   CONSTRAINT `fk_comments_users1`
     FOREIGN KEY (`cmt_usr_id`)
     REFERENCES `blog`.`users` (`usr_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_comments_articles1`
-    FOREIGN KEY (`cmt_art_id`)
-    REFERENCES `blog`.`articles` (`art_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -146,7 +139,7 @@ CREATE TABLE IF NOT EXISTS `blog`.`photos` (
   `pht_src` VARCHAR(255) NULL,
   `pht_storage` VARCHAR(45) NULL,
   `pht_gal_id` INT NOT NULL,
-  `pht_main` SET('0','1') NULL,
+  `pht_main` TINYINT NULL,
   PRIMARY KEY (`pht_id`),
   INDEX `fk_photos_galleries1_idx` (`pht_gal_id` ASC),
   CONSTRAINT `fk_photos_galleries1`

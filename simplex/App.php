@@ -30,7 +30,7 @@ class App
         $this->isAjax = $request->isXmlHttpRequest();
 
         if (!$this->isAjax) {
-            $routes = include __DIR__ . '/../routes.php';
+            $routes = include __DIR__ . '/../src/routes.php';
             $this->urlGenerator = new UrlGenerator($routes, new Routing\RequestContext());
 
             $twig = new TwigServiceProvider($this->config['twig']);
@@ -69,7 +69,7 @@ class App
 
     private function loadConfig()
     {
-        $this->config = include(__DIR__ . '/../config.php');
+        $this->config = include(__DIR__ . '/../src/config.php');
     }
 
 }

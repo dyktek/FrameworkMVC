@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Api\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -43,16 +43,16 @@ class Users
     private $usrEmail;
 
     /**
-     * @var array
+     * @var boolean
      *
-     * @ORM\Column(name="usr_status", type="simple_array", nullable=true)
+     * @ORM\Column(name="usr_status", type="boolean", nullable=true)
      */
     private $usrStatus;
 
     /**
-     * @var array
+     * @var boolean
      *
-     * @ORM\Column(name="usr_role", type="simple_array", nullable=true)
+     * @ORM\Column(name="usr_role", type="boolean", nullable=true)
      */
     private $usrRole;
 

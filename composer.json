@@ -1,6 +1,9 @@
 {
     "autoload": {
-        "psr-4": { "": "src/" }
+        "psr-4": {
+            "": "src/",
+            "Simplex\\": "simplex"
+        }
     },
     "require": {
         "symfony/http-foundation": "^3.0",

@@ -8,17 +8,17 @@ class ApiController extends App
 {
     public function getBooksAction()
     {
-        $em = $this->getEntityManager();
+//        $em = $this->getEntityManager();
+//
+//        $books = $em->getRepository('Books\Model\Books')->findAll();
+//
+//        $newBooks = [];
+//
+//        foreach ($books as $book) {
+//            $newBooks[] = $book->toArray();
+//        }
 
-        $books = $em->getRepository('Books\Model\Books')->findAll();
-
-        $newBooks = [];
-
-        foreach ($books as $book) {
-            $newBooks[] = $book->toArray();
-        }
-
-        return $this->renderAjax($newBooks);
+        return $this->renderAjax([]);
 
 
     }

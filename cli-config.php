@@ -22,6 +22,8 @@ if ($smModuleArg) {
     $paths = array(__DIR__ . '/src/');
 }
 
+print_r($paths);
+
 $isDevMode = true;
 
 $dbParams = include(__DIR__ . '/src/config.php');

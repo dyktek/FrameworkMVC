@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Api\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -31,7 +31,7 @@ class Tags
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Articles", inversedBy="tagsTag")
+     * @ORM\ManyToMany(targetEntity="Api\Model\Articles", inversedBy="tagsTag")
      * @ORM\JoinTable(name="tags_has_articles",
      *   joinColumns={
      *     @ORM\JoinColumn(name="tags_tag_id", referencedColumnName="tag_id")

@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Api\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,16 +36,16 @@ class Photos
     private $phtStorage;
 
     /**
-     * @var array
+     * @var boolean
      *
-     * @ORM\Column(name="pht_main", type="simple_array", nullable=true)
+     * @ORM\Column(name="pht_main", type="boolean", nullable=true)
      */
     private $phtMain;
 
     /**
-     * @var \Galleries
+     * @var \Api\Model\Galleries
      *
-     * @ORM\ManyToOne(targetEntity="Galleries")
+     * @ORM\ManyToOne(targetEntity="Api\Model\Galleries")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="pht_gal_id", referencedColumnName="gal_id")
      * })

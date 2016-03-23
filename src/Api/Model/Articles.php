@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Api\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,9 +36,9 @@ class Articles
     private $artSlug;
 
     /**
-     * @var array
+     * @var boolean
      *
-     * @ORM\Column(name="art_status", type="simple_array", nullable=true)
+     * @ORM\Column(name="art_status", type="boolean", nullable=true)
      */
     private $artStatus;
 
@@ -57,9 +57,9 @@ class Articles
     private $artDate;
 
     /**
-     * @var \Categories
+     * @var \Api\Model\Categories
      *
-     * @ORM\ManyToOne(targetEntity="Categories")
+     * @ORM\ManyToOne(targetEntity="Api\Model\Categories")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="art_cat_id", referencedColumnName="cat_id")
      * })
@@ -67,19 +67,9 @@ class Articles
     private $artCat;
 
     /**
-     * @var \Users
+     * @var \Api\Model\Galleries
      *
-     * @ORM\ManyToOne(targetEntity="Users")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="art_usr_id", referencedColumnName="usr_id")
-     * })
-     */
-    private $artUsr;
-
-    /**
-     * @var \Galleries
-     *
-     * @ORM\ManyToOne(targetEntity="Galleries")
+     * @ORM\ManyToOne(targetEntity="Api\Model\Galleries")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="art_gal_id", referencedColumnName="gal_id")
      * })
@@ -87,9 +77,19 @@ class Articles
     private $artGal;
 
     /**
+     * @var \Api\Model\Users
+     *
+     * @ORM\ManyToOne(targetEntity="Api\Model\Users")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="art_usr_id", referencedColumnName="usr_id")
+     * })
+     */
+    private $artUsr;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Tags", mappedBy="articlesArt")
+     * @ORM\ManyToMany(targetEntity="Api\Model\Tags", mappedBy="articlesArt")
      */
     private $tagsTag;
 

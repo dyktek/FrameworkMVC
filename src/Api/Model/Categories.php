@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Api\Model;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,9 +36,9 @@ class Categories
     private $catSlug;
 
     /**
-     * @var array
+     * @var boolean
      *
-     * @ORM\Column(name="cat_status", type="simple_array", nullable=true)
+     * @ORM\Column(name="cat_status", type="boolean", nullable=true)
      */
     private $catStatus;
 
