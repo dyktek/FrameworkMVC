@@ -29,9 +29,9 @@ class Comments
     private $cmtBody;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="cmt_status", type="boolean", nullable=true)
+     * @ORM\Column(name="cmt_status", type="integer", nullable=true)
      */
     private $cmtStatus;
 

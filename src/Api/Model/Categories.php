@@ -36,9 +36,9 @@ class Categories
     private $catSlug;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="cat_status", type="boolean", nullable=true)
+     * @ORM\Column(name="cat_status", type="integer", nullable=true)
      */
     private $catStatus;
 

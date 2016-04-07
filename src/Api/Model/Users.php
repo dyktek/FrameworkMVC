@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Users
  *
- * @ORM\Table(name="users")
+ * @ORM\Table(name="users", uniqueConstraints={@ORM\UniqueConstraint(name="usr_email_UNIQUE", columns={"usr_email"})})
  * @ORM\Entity
  */
 class Users
@@ -43,16 +43,16 @@ class Users
     private $usrEmail;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="usr_status", type="boolean", nullable=true)
+     * @ORM\Column(name="usr_status", type="integer", nullable=true)
      */
     private $usrStatus;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="usr_role", type="boolean", nullable=true)
+     * @ORM\Column(name="usr_role", type="integer", nullable=true)
      */
     private $usrRole;
 

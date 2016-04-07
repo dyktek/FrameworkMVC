@@ -5,6 +5,9 @@ require_once __DIR__.'/../vendor/autoload.php';
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing;
 use Symfony\Component\HttpKernel;
+use Symfony\Component\HttpFoundation\Session\Session;
+
+$session = new Session();
 
 $request = Request::createFromGlobals();
 
@@ -14,6 +17,6 @@ $context = new Routing\RequestContext();
 $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
 $resolver = new HttpKernel\Controller\ControllerResolver();
 
-$framework = new Simplex\Framework($matcher, $resolver);
+$framework = new Simplex\Framework($matcher, $resolver, $routes, $session);
 $response = $framework->handle($request);
 $response->send();

@@ -15,25 +15,26 @@ class Router
         $this->routes = $routes;
     }
 
-    public function addGet($name, $path, $defaults)
+    public function addGet($name, $path, $role, $defaults)
     {
-        $this->routes->add($name, new Routing\Route($path, $defaults, array(), array(), '', array(), Request::METHOD_GET));
+        $this->routes->add($name, new Routing\Route($path, $defaults, array(), array('role' => $role), '', array(), Request::METHOD_GET));
     }
 
-    public function addPost($name, $path, $defaults)
+    public function addPost($name, $path, $role, $defaults)
     {
-        $this->routes->add($name, new Routing\Route($path, $defaults, array(), array(), '', array(), Request::METHOD_POST));
+        $this->routes->add($name, new Routing\Route($path, $defaults, array(), array('role' => $role), '', array(), Request::METHOD_POST));
     }
 
-    public function addDelete($name, $path, $defaults)
+    public function addDelete($name, $path, $role, $defaults)
     {
-        $this->routes->add($name, new Routing\Route($path, $defaults, array(), array(), '', array(), Request::METHOD_DELETE));
+        $this->routes->add($name, new Routing\Route($path, $defaults, array(), array('role' => $role), '', array(), Request::METHOD_DELETE));
     }
 
-    public function addPut($name, $path, $defaults)
+    public function addPut($name, $path, $role, $defaults)
     {
-        $this->routes->add($name, new Routing\Route($path, $defaults, array(), array(), '', array(), Request::METHOD_PUT));
+        $this->routes->add($name, new Routing\Route($path, $defaults, array(), array('role' => $role), '', array(), Request::METHOD_PUT));
     }
+
 
     public function getRouteCollection()
     {

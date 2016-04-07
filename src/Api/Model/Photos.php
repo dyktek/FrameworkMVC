@@ -36,9 +36,9 @@ class Photos
     private $phtStorage;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="pht_main", type="boolean", nullable=true)
+     * @ORM\Column(name="pht_main", type="integer", nullable=true)
      */
     private $phtMain;
 

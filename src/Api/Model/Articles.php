@@ -36,9 +36,9 @@ class Articles
     private $artSlug;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="art_status", type="boolean", nullable=true)
+     * @ORM\Column(name="art_status", type="integer", nullable=true)
      */
     private $artStatus;
 
@@ -67,16 +67,6 @@ class Articles
     private $artCat;
 
     /**
-     * @var \Api\Model\Galleries
-     *
-     * @ORM\ManyToOne(targetEntity="Api\Model\Galleries")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="art_gal_id", referencedColumnName="gal_id")
-     * })
-     */
-    private $artGal;
-
-    /**
      * @var \Api\Model\Users
      *
      * @ORM\ManyToOne(targetEntity="Api\Model\Users")
@@ -85,6 +75,16 @@ class Articles
      * })
      */
     private $artUsr;
+
+    /**
+     * @var \Api\Model\Galleries
+     *
+     * @ORM\ManyToOne(targetEntity="Api\Model\Galleries")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="art_gal_id", referencedColumnName="gal_id")
+     * })
+     */
+    private $artGal;
 
     /**
      * @var \Doctrine\Common\Collections\Collection

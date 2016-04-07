@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGenerator;
 use Symfony\Component\Routing;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class App
 {
@@ -21,6 +23,8 @@ class App
 
     protected $isAjax = false;
 
+    protected $session;
+
     public function __construct()
     {
         $this->loadConfig();
@@ -28,6 +32,8 @@ class App
         $request = Request::createFromGlobals();
 
         $this->isAjax = $request->isXmlHttpRequest();
+
+        $this->session = new Session();
 
         if (!$this->isAjax) {
             $routes = include __DIR__ . '/../src/routes.php';
@@ -70,6 +76,11 @@ class App
     private function loadConfig()
     {
         $this->config = include(__DIR__ . '/../src/config.php');
+    }
+
+    protected function redirect($path)
+    {
+        return new RedirectResponse($path);
     }
 
 }
