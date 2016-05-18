@@ -1,0 +1,25 @@
+<h3 class="first">Lista kategorii</h3>
+
+<p-dataTable [value]="categories" [lazy]="true" [rows]="10" [paginator]="true"
+             (onLazyLoad)="loadLazy($event)" [totalRecords]="totalRecords">
+    <header>List of Cars</header>
+    <p-column field="catId" header="ID"></p-column>
+    <p-column field="catName" header="catName"></p-column>
+
+    <p-column field="catStatus" header="Status">
+        <template let-col let-category="rowData">
+
+            <span [ngSwitch]="category[col.field]">
+                <span *ngSwitchWhen="0">Ukryty</span>
+                <span *ngSwitchWhen="1">Widoczny</span>
+            </span>
+        </template>
+    </p-column>
+
+    <p-column styleClass="col-button" header="Akcje">
+        <template let-category="rowData">
+            <a class="btn btn-default btn-sm" (click)="editCategory(category)">
+                <i class="pointer fa fa-pencil-square-o" aria-hidden="true"></i></a>
+        </template>
+    </p-column>
+</p-dataTable>

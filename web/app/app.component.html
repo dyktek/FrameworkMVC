@@ -1,0 +1,36 @@
+<p-menubar>
+    <ul>
+        <li> <a data-icon="fa fa-th-list"><span>Kategorie</span></a>
+            <ul>
+                <li><a data-icon="fa-plus"><span>Dodaj kategorię</span></a></li>
+                <li><a [routerLink]="['/backoffice/categories']" data-icon="fa-list-alt"><span>Lista kategorii</span></a></li>
+            </ul>
+        </li>
+
+        <li> <a data-icon="fa fa-file-text"><span>Artykuły</span></a>
+            <ul>
+                <li><a data-icon="fa-plus"><span>Dodaj artykuł</span></a></li>
+                <li><a [routerLink]="['/backoffice/articles']" data-icon="fa-list-alt"><span>Lista artykułów</span></a></li>
+            </ul>
+        </li>
+
+        <li> <a data-icon="fa fa-users"><span>Użytkownicy</span></a>
+            <ul>
+                <li><a data-icon="fa-plus"><span>Dodaj użytkownika</span></a></li>
+                <li><a [routerLink]="['/backoffice/users']" data-icon="fa-list-alt"><span>Lista użytkowników</span></a></li>
+            </ul>
+        </li>
+
+        <li> <a data-icon="fa fa-comments"><span>Komentarze</span></a>
+            <ul>
+                <li><a [routerLink]="['/backoffice/users']" data-icon="fa-list-alt"><span>Lista komentarzy</span></a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a data-icon="fa-sign-out"><span>Wyloguj</span></a>
+        </li>
+    </ul>
+</p-menubar>
+
+<router-outlet></router-outlet>

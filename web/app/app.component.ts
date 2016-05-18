@@ -1,34 +1,30 @@
-import {Component} from 'angular2/core';
-import {BookService} from './book.service';
-import {Book} from './book';
-import {BooksFilterPipe} from './book.filter';
-import {HTTP_PROVIDERS} from 'angular2/http';
-import {ModComponent} from './mod/mod.component';
+import { Component } from '@angular/core';
+import { Router, Routes, ROUTER_DIRECTIVES } from '@angular/router';
+import { Menubar } from 'primeng/primeng';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryEditComponent } from './categories/category-edit.component';
 
 @Component({
     selector: 'my-app',
-    templateUrl: 'app/book.component.html',
-    providers: [BookService, HTTP_PROVIDERS],
-    pipes: [BooksFilterPipe],
-    directives: [ModComponent]
+    templateUrl: 'app/app.component.html',
+    directives: [Menubar, ROUTER_DIRECTIVES],
 })
 
-export class AppComponent
-{
-    books:Array<Book>;
-
-    constructor(private _bookService: BookService) { }
-
-    getBooks() {
-        this._bookService
-            .getBooks()
-            .subscribe(
-                books => this.books = books,
-                error => console.log('onError: %s', error)
-            );
+@Routes([
+    {
+        path: '/backoffice/admin',
+        component: AppComponent,
+    },
+    {
+        path: '/backoffice/categories',
+        component: CategoriesComponent
+    },
+    {
+        path: '/backoffice/category/:id',
+        component: CategoryEditComponent
     }
+])
 
-    ngOnInit() {
-        this.getBooks();
-    }
+export class AppComponent {
+    constructor(private router: Router) {}
 }

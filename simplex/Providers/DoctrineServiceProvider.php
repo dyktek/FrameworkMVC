@@ -26,6 +26,8 @@ class DoctrineServiceProvider extends ServiceProvider
         AnnotationRegistry::registerLoader('class_exists');
         $config->setMetadataDriverImpl($driver);
 
+
+
         return EntityManager::create($this->config, $config);
     }
 }

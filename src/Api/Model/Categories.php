@@ -42,6 +42,36 @@ class Categories
      */
     private $catStatus;
 
+    /**
+     * @param int $catId
+     */
+    public function setCatId($catId)
+    {
+        $this->catId = $catId;
+    }
 
+    /**
+     * @param string $catName
+     */
+    public function setCatName($catName)
+    {
+        $this->catName = $catName;
+    }
+
+    /**
+     * @param string $catSlug
+     */
+    public function setCatSlug($catSlug)
+    {
+        $this->catSlug = $catSlug;
+    }
+
+    /**
+     * @param int $catStatus
+     */
+    public function setCatStatus($catStatus)
+    {
+        $this->catStatus = $catStatus;
+    }
 }
 

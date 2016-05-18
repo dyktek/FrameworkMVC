@@ -1,0 +1,16 @@
+<h3>Edycja kategorii <i>{{category.catName}}</i></h3>
+
+<div class="ui-grid ui-grid-responsive">
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2">Nazwa kategorii</div>
+        <div class="ui-grid-col-11"><input type="text" pInputText  [(ngModel)]="category.catName"/></div>
+    </div>
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2">Status</div>
+        <div class="ui-grid-col-11"><p-dropdown [options]="statusList" [(ngModel)]="category.catStatus"></p-dropdown></div>
+    </div>
+    <div class="ui-grid-row">
+        <div class="ui-grid-col-2"></div>
+        <div class="ui-grid-col-11"><button pButton type="button" (click)="saveCategory()" label="Zapisz"></button></div>
+    </div>
+</div>
