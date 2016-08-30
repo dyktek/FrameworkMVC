@@ -1,28 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Response, Headers } from '@angular/http';
+import { AuthHttp } from 'angular2-jwt/angular2-jwt';
 import {Category} from "./category";
-;
+import { Observable } from "rxjs";
+
 
 @Injectable()
 export class CategoriesService
 {
     constructor(
-        private http: Http) {
+        private authHttp: AuthHttp) {
     }
 
     getCategories(page: Number) {
-        return this.http.get('/api/categories/' + page)
+        return this.authHttp.get('/api/categories/' + page)
              .map((res: Response) => res.json());
 
     }
 
     getCategory(catId: Number) {
-        return this.http.get('/api/category/' + catId)
+        return this.authHttp.get('/api/category/' + catId)
             .map((res: Response) => res.json());
     }
 
     saveCategory(category: Category) {
-        return this.http.put('/api/category', JSON.stringify(category)).map((res: Response) => res.json());
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        if(category.catId > 0) {
+            return this.authHttp.put('/api/category', JSON.stringify(category), {headers: headers})
+                .map((res:Response) => res.json());
+        } else {
+            return this.authHttp.post('/api/category', JSON.stringify(category), {headers: headers})
+                .map((res:Response) => res.json());
+        }
     }
 }

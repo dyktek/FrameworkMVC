@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, ROUTER_DIRECTIVES } from '@angular/router';
-import { DataTable, Column, LazyLoadEvent } from 'primeng/primeng';
+import { Router } from '@angular/router';
 import { Category } from './category';
 import { CategoriesService } from './categories.service';
 
@@ -8,8 +7,7 @@ import { CategoriesService } from './categories.service';
 @Component({
     selector: 'my-app',
     templateUrl: 'app/categories/categories.component.html',
-    providers: [CategoriesService],
-    directives: [DataTable, Column, ROUTER_DIRECTIVES]
+    providers: [CategoriesService]
 })
 
 export class CategoriesComponent {
@@ -19,11 +17,14 @@ export class CategoriesComponent {
 
     constructor(
         private router: Router,
-        private categoriesService : CategoriesService) {}
+        private categoriesService : CategoriesService) {
 
-    loadLazy(event: LazyLoadEvent) {
+        this.getCategories();
 
-        this.categoriesService.getCategories(event.first / 10)
+    }
+
+    getCategories() {
+        this.categoriesService.getCategories(1)
             .subscribe(
                 categories => {
                     this.categories = categories.data;
@@ -33,7 +34,11 @@ export class CategoriesComponent {
             );
     }
 
-    editCategory(category: Category) {
-        this.router.navigate(['/backoffice/category/' + category.catId]);
+    editCategory(category?: Category) {
+        if(category) {
+            this.router.navigate(['/backoffice/category/' + category.catId]);
+        } else {
+            this.router.navigate(['/backoffice/category/0']);
+        }
     }
 }

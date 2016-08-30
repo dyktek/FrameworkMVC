@@ -1,36 +1,33 @@
-<p-menubar>
-    <ul>
-        <li> <a data-icon="fa fa-th-list"><span>Kategorie</span></a>
-            <ul>
-                <li><a data-icon="fa-plus"><span>Dodaj kategorię</span></a></li>
-                <li><a [routerLink]="['/backoffice/categories']" data-icon="fa-list-alt"><span>Lista kategorii</span></a></li>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" [routerLink]="['/backoffice']">Angular2Admin</a>
+        </div>
+
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a [routerLink]="['/backoffice/category/0']">Add new</a></li>
+                        <li><a [routerLink]="['/backoffice/categories']">List</a></li>
+                    </ul>
+                </li>
             </ul>
-        </li>
 
-        <li> <a data-icon="fa fa-file-text"><span>Artykuły</span></a>
-            <ul>
-                <li><a data-icon="fa-plus"><span>Dodaj artykuł</span></a></li>
-                <li><a [routerLink]="['/backoffice/articles']" data-icon="fa-list-alt"><span>Lista artykułów</span></a></li>
-            </ul>
-        </li>
+        </div>
+    </div>
+</nav>
 
-        <li> <a data-icon="fa fa-users"><span>Użytkownicy</span></a>
-            <ul>
-                <li><a data-icon="fa-plus"><span>Dodaj użytkownika</span></a></li>
-                <li><a [routerLink]="['/backoffice/users']" data-icon="fa-list-alt"><span>Lista użytkowników</span></a></li>
-            </ul>
-        </li>
 
-        <li> <a data-icon="fa fa-comments"><span>Komentarze</span></a>
-            <ul>
-                <li><a [routerLink]="['/backoffice/users']" data-icon="fa-list-alt"><span>Lista komentarzy</span></a></li>
-            </ul>
-        </li>
-
-        <li>
-            <a data-icon="fa-sign-out"><span>Wyloguj</span></a>
-        </li>
-    </ul>
-</p-menubar>
-
-<router-outlet></router-outlet>
+<div class="container">
+    <router-outlet></router-outlet>
+</div>

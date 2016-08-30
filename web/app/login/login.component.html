@@ -1,0 +1,14 @@
+<div class="login center-block">
+    <h1>Login</h1>
+    <div class="form-group">
+        <label for="useremail">Email</label>
+        <input type="text" class="form-control" id="useremail"
+               [(ngModel)]="loginForm.useremail" name="useremail" placeholder="Useremail"/>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" id="password"
+               [(ngModel)]="loginForm.password" name="password" placeholder="Password"/>
+    </div>
+    <button (click)="login()" class="btn btn-default">Submit</button>
+</div>

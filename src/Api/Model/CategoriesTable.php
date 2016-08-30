@@ -2,7 +2,6 @@
 
 namespace Api\Model;
 
-
 class CategoriesTable extends BaseTable
 {
     public function getCategories(array $options = [])
@@ -11,7 +10,8 @@ class CategoriesTable extends BaseTable
         $pageSize = isset($options['pageSize']) ? $options['pageSize'] : 10;
 
         $query = $this->qb->select('cat')
-            ->from('Api\Model\Categories', 'cat');
+            ->from('Api\Model\Categories', 'cat')
+            ->orderBy('cat.catId', 'DESC');
 
         $paginator  = new \Doctrine\ORM\Tools\Pagination\Paginator($query);
 
@@ -46,6 +46,8 @@ class CategoriesTable extends BaseTable
     {
         if($data['catId']) {
             $category = $this->em->getRepository('Api\Model\Categories')->find($data['catId']);
+        } else {
+            $category = new Categories();
         }
 
         if($category) {

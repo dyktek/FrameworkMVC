@@ -1,16 +1,26 @@
-<h3>Edycja kategorii <i>{{category.catName}}</i></h3>
+<div *ngIf="category">
+    <h3>
+    <span [ngSwitch]="category.catId">
+        <span *ngSwitchCase="0">Dodawanie</span>
+        <span *ngSwitchDefault>Edycja</span>
+    </span>
 
-<div class="ui-grid ui-grid-responsive">
-    <div class="ui-grid-row">
-        <div class="ui-grid-col-2">Nazwa kategorii</div>
-        <div class="ui-grid-col-11"><input type="text" pInputText  [(ngModel)]="category.catName"/></div>
+        kategorii <i>{{category.catName}} #{{category.catStatus}}</i></h3>
+
+
+    <div class="form-group">
+        <label for="categoryName">Category name</label>
+        <input type="text" class="form-control" id="categoryName" placeholder="Name" [(ngModel)]="category.catName">
     </div>
-    <div class="ui-grid-row">
-        <div class="ui-grid-col-2">Status</div>
-        <div class="ui-grid-col-11"><p-dropdown [options]="statusList" [(ngModel)]="category.catStatus"></p-dropdown></div>
+
+
+    <div class="form-group">
+        <label for="categoryStatus">Category status</label>
+        <select [(ngModel)]="category.catStatus" id="categoryStatus" name class="form-control">
+            <option *ngFor="let status of statusList" value="{{status.value}}">{{status.label}}</option>
+        </select>
     </div>
-    <div class="ui-grid-row">
-        <div class="ui-grid-col-2"></div>
-        <div class="ui-grid-col-11"><button pButton type="button" (click)="saveCategory()" label="Zapisz"></button></div>
-    </div>
+
+    <button type="submit" (click)="saveCategory()" class="btn btn-default">Save</button>
+
 </div>

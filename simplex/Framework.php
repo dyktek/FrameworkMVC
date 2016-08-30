@@ -36,23 +36,23 @@ class Framework
 
             $controller = $this->resolver->getController($request);
 
-            $route  = $this->routes->get($request->get('_route'));
-
-            $role = $route->getOption('role');
-
-            $userInfo = $this->session->get('userInfo');
-            if(!$userInfo) {
-                $this->session->set('userInfo', [
-                    'role' => 3,
-                    'name' => 'guest',
-                    'email' => ''
-                ]);
-                return new RedirectResponse('/admin/login');
-            }
-
-            if($role < $userInfo['role']) {
-                return new RedirectResponse('/admin/login');
-            }
+//            $route  = $this->routes->get($request->get('_route'));
+//
+//            $role = $route->getOption('role');
+//
+//            $userInfo = $this->session->get('userInfo');
+//            if(!$userInfo) {
+//                $this->session->set('userInfo', [
+//                    'role' => 3,
+//                    'name' => 'guest',
+//                    'email' => ''
+//                ]);
+//                return new RedirectResponse('/admin/login');
+//            }
+//
+//            if($role < $userInfo['role']) {
+//                return new RedirectResponse('/admin/login');
+//            }
 
             $arguments = $this->resolver->getArguments($request, $controller);
 

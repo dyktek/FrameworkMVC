@@ -10,11 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var primeng_1 = require('primeng/primeng');
 var categories_service_1 = require('./categories.service');
 var CategoryEditComponent = (function () {
-    function CategoryEditComponent(router, categoriesService) {
+    function CategoryEditComponent(router, route, categoriesService) {
         this.router = router;
+        this.route = route;
         this.categoriesService = categoriesService;
         this.category = {
             catId: 0,
@@ -27,25 +27,32 @@ var CategoryEditComponent = (function () {
             { label: 'Widoczny', value: 1 }
         ];
     }
+    CategoryEditComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sub = this.route.params.subscribe(function (params) {
+            var id = +params['id'];
+            if (id) {
+                _this.categoriesService.getCategory(id)
+                    .subscribe(function (category) {
+                    _this.category = category;
+                }, function (error) { return console.log('onError: %s', error); });
+            }
+        });
+    };
     CategoryEditComponent.prototype.saveCategory = function () {
         var _this = this;
         this.categoriesService.saveCategory(this.category)
-            .subscribe(function (res) { _this.router.navigate(['/backoffice/categories']); }, function (error) { return console.log('onError: %s', error); });
-    };
-    CategoryEditComponent.prototype.routerOnActivate = function (curr) {
-        var _this = this;
-        var id = parseInt(curr.getParam('id'));
-        this.categoriesService.getCategory(id)
-            .subscribe(function (category) { return _this.category = category; }, function (error) { return console.log('onError: %s', error); });
+            .subscribe(function (res) {
+            _this.router.navigate(['/backoffice/categories']);
+        }, function (error) { return console.log('onError: %s', error); });
     };
     CategoryEditComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/categories/category-edit.component.html',
-            providers: [categories_service_1.CategoriesService],
-            directives: [primeng_1.InputText, primeng_1.Dropdown, primeng_1.Button]
+            providers: [categories_service_1.CategoriesService]
         }), 
-        __metadata('design:paramtypes', [router_1.Router, categories_service_1.CategoriesService])
+        __metadata('design:paramtypes', [router_1.Router, router_1.ActivatedRoute, categories_service_1.CategoriesService])
     ], CategoryEditComponent);
     return CategoryEditComponent;
 }());

@@ -10,30 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var primeng_1 = require('primeng/primeng');
 var categories_service_1 = require('./categories.service');
 var CategoriesComponent = (function () {
     function CategoriesComponent(router, categoriesService) {
         this.router = router;
         this.categoriesService = categoriesService;
+        this.getCategories();
     }
-    CategoriesComponent.prototype.loadLazy = function (event) {
+    CategoriesComponent.prototype.getCategories = function () {
         var _this = this;
-        this.categoriesService.getCategories(event.first / 10)
+        this.categoriesService.getCategories(1)
             .subscribe(function (categories) {
             _this.categories = categories.data;
             _this.totalRecords = categories.totalRecords;
         }, function (error) { return console.log('onError: %s', error); });
     };
     CategoriesComponent.prototype.editCategory = function (category) {
-        this.router.navigate(['/backoffice/category/' + category.catId]);
+        if (category) {
+            this.router.navigate(['/backoffice/category/' + category.catId]);
+        }
+        else {
+            this.router.navigate(['/backoffice/category/0']);
+        }
     };
     CategoriesComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/categories/categories.component.html',
-            providers: [categories_service_1.CategoriesService],
-            directives: [primeng_1.DataTable, primeng_1.Column, router_1.ROUTER_DIRECTIVES]
+            providers: [categories_service_1.CategoriesService]
         }), 
         __metadata('design:paramtypes', [router_1.Router, categories_service_1.CategoriesService])
     ], CategoriesComponent);

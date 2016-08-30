@@ -10,26 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/map');
-;
+var angular2_jwt_1 = require('angular2-jwt/angular2-jwt');
 var CategoriesService = (function () {
-    function CategoriesService(http) {
-        this.http = http;
+    function CategoriesService(authHttp) {
+        this.authHttp = authHttp;
     }
     CategoriesService.prototype.getCategories = function (page) {
-        return this.http.get('/api/categories/' + page)
+        return this.authHttp.get('/api/categories/' + page)
             .map(function (res) { return res.json(); });
     };
     CategoriesService.prototype.getCategory = function (catId) {
-        return this.http.get('/api/category/' + catId)
+        return this.authHttp.get('/api/category/' + catId)
             .map(function (res) { return res.json(); });
     };
     CategoriesService.prototype.saveCategory = function (category) {
-        return this.http.put('/api/category', JSON.stringify(category)).map(function (res) { return res.json(); });
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        if (category.catId > 0) {
+            return this.authHttp.put('/api/category', JSON.stringify(category), { headers: headers })
+                .map(function (res) { return res.json(); });
+        }
+        else {
+            return this.authHttp.post('/api/category', JSON.stringify(category), { headers: headers })
+                .map(function (res) { return res.json(); });
+        }
     };
     CategoriesService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [angular2_jwt_1.AuthHttp])
     ], CategoriesService);
     return CategoriesService;
 }());
