@@ -10,20 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var angular2_jwt_1 = require('angular2-jwt/angular2-jwt');
+var angular2_jwt_1 = require('angular2-jwt');
 var AuthGuard = (function () {
-    function AuthGuard(router, jwtHelper) {
-        if (jwtHelper === void 0) { jwtHelper = new angular2_jwt_1.JwtHelper(); }
+    function AuthGuard(router) {
         this.router = router;
-        this.jwtHelper = jwtHelper;
     }
     AuthGuard.prototype.canActivate = function () {
-        var token = localStorage.getItem('id_token');
-        // console.log(
-        //     this.jwtHelper.decodeToken(token),
-        //     this.jwtHelper.getTokenExpirationDate(token),
-        //     this.jwtHelper.isTokenExpired(token)
-        // );
         if (angular2_jwt_1.tokenNotExpired()) {
             return true;
         }
@@ -31,7 +23,7 @@ var AuthGuard = (function () {
     };
     AuthGuard = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [router_1.Router, angular2_jwt_1.JwtHelper])
+        __metadata('design:paramtypes', [router_1.Router])
     ], AuthGuard);
     return AuthGuard;
 }());

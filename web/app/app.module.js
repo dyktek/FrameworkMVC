@@ -12,10 +12,12 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var http_1 = require('@angular/http');
-var angular2_jwt_1 = require('angular2-jwt/angular2-jwt');
+var angular2_jwt_1 = require('angular2-jwt');
 var app_component_1 = require('./app.component');
 var app_routing_1 = require('./app.routing');
 var auth_guard_1 = require('./common/auth.guard');
+var auth_provider_1 = require('./common/auth.provider');
+//
 var categories_component_1 = require('./categories/categories.component');
 var category_edit_component_1 = require('./categories/category-edit.component');
 var login_component_1 = require('./login/login.component');
@@ -37,21 +39,8 @@ var AppModule = (function () {
                 login_component_1.LoginComponent
             ],
             providers: [
-                auth_guard_1.AuthGuard, angular2_jwt_1.AuthHttp, angular2_jwt_1.JwtHelper,
-                core_1.provide(angular2_jwt_1.AuthHttp, {
-                    useFactory: function (http) {
-                        return new angular2_jwt_1.AuthHttp(new angular2_jwt_1.AuthConfig({
-                            headerName: 'token',
-                            headerPrefix: '',
-                            tokenName: 'id_token',
-                            tokenGetter: (function () { return localStorage.getItem('id_token'); }),
-                            globalHeaders: [{ 'Content-Type': 'application/json' }],
-                            noJwtError: true,
-                            noTokenScheme: true
-                        }), http);
-                    },
-                    deps: [http_1.Http]
-                })
+                auth_guard_1.AuthGuard,
+                { provide: angular2_jwt_1.AuthHttp, useClass: auth_provider_1.AuthProvider }
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
