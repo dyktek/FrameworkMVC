@@ -29,7 +29,7 @@ class Framework
 
     public function handle(Request $request)
     {
-        $this->matcher->getContext()->fromRequest($request);
+        //$this->matcher->getContext()->fromRequest($request); DRY ;)
 
         try {
             $request->attributes->add($this->matcher->match($request->getPathInfo()));
