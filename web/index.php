@@ -16,7 +16,8 @@ $context = new Routing\RequestContext();
 $context->fromRequest($request);
 $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
 $resolver = new HttpKernel\Controller\ControllerResolver();
+$resolverArg = new HttpKernel\Controller\ArgumentResolver();
 
-$framework = new Simplex\Framework($matcher, $resolver, $routes, $session);
+$framework = new Simplex\Framework($matcher, $resolver, $resolverArg, $routes, $session);
 $response = $framework->handle($request);
 $response->send();
